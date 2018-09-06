@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 5% auto;
+}
+
+
+/* #canvas {
+    width: 100%;
+    height: 100vh;
+} */
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    z-index: 1;
+    position: relative;
+    background: teal;
+    height: 100vh;
+}
+
+.content li {
+    padding: 10px;
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 20px;
+}
