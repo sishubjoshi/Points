@@ -2,7 +2,7 @@
 let drawNode = false;
 let drawLine = false;
 let CircleArray = [];
-
+let linePoints = [];
 
 // UI vars
 const draw = document.getElementById('draw');
@@ -28,16 +28,26 @@ line.addEventListener('click', () => {
 });
 
 
-// CREATE CIRCLE
-let createNode = (e) => {
-    x = e.clientX;
-    y = e.clientY;
-    console.log(x, y);
+// init
 
-    if (isPointInNode(x, y) === true) {
-        console.log('yes');
-        drawNode = false;
+let init = (e) => {
+        x = e.clientX;
+        y = e.clientY;
+        console.log(x, y);
+
+        if (isPointInNode(x, y) === true) {
+            console.log('yes');
+            drawNode = false;
+            if (drawLine == true) {
+                createLine(x, y);
+            }
+        } else {
+            createNode(x, y);
+
+        }
     }
+    // CREATE CIRCLE
+let createNode = (x, y) => {
 
     if (drawNode === true) {
 
@@ -54,11 +64,24 @@ let createNode = (e) => {
     }
 }
 
-
 // CONNECTS TWO NODES
-let createLine = () => {
+let createLine = (x, y) => {
+    let drawPoint = getExactPoint(x, y);
+    // console.log(drawPoint.x, drawPoint.y);
+
+    linePoints.push({ x: drawPoint.x, y: drawPoint.y });
+
+    if (linePoints.length === 2) {
+        c.beginPath();
+        c.moveTo(linePoints[0].x, linePoints[0].y);
+        c.lineTo(linePoints[1].x, linePoints[1].y);
+        c.stroke();
+        linePoints = [];
+    }
+
 
 }
+
 
 
 
@@ -67,6 +90,18 @@ let isPointInNode = (x, y) => {
     for (let i = 0; i < CircleArray.length; i++) {
         if (x > CircleArray[i].x - 30 && x < CircleArray[i].x + 30 && y > CircleArray[i].y - 30 && y < CircleArray[i].y + 30) {
             return true;
+
+        }
+    }
+}
+
+let getExactPoint = (x, y) => {
+    for (let i = 0; i < CircleArray.length; i++) {
+        if (x > CircleArray[i].x - 30 && x < CircleArray[i].x + 30 && y > CircleArray[i].y - 30 && y < CircleArray[i].y + 30) {
+            return {
+                x: CircleArray[i].x,
+                y: CircleArray[i].y
+            }
 
         }
     }
