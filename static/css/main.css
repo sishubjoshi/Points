@@ -29,9 +29,25 @@
     height: 100vh;
 }
 
-.content li {
-    padding: 10px;
+.list {
+    /* padding: 15px; */
     color: #ffffff;
     font-family: monospace;
     font-size: 20px;
+}
+
+.list li {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.list li:hover {
+    transform: scale(1.1);
+    background: green;
+}
+
+.list-items {
+    color: #ffffff;
+    list-style-type: none;
+    text-decoration: none;
 }
