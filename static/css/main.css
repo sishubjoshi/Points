@@ -24,7 +24,7 @@
 
 .content {
     z-index: 1;
-    position: relative;
+    position: absolute;
     background: teal;
     height: 100vh;
 }
@@ -51,3 +51,6 @@
     list-style-type: none;
     text-decoration: none;
 }
+
+
+/* media queries */

@@ -42,26 +42,29 @@ let init = (e) => {
                 createLine(x, y);
             }
         } else {
-            createNode(x, y);
+
+            if (drawNode === true) {
+                createNode(x, y);
+            }
+
 
         }
     }
     // CREATE CIRCLE
 let createNode = (x, y) => {
 
-    if (drawNode === true) {
 
-        // c.strokeStyle = 'rgb(0,30,40)';
-        // c.beginPath();
-        // c.arc(x, y, 60, 0, 360, false);
-        // c.stroke();
+    // c.strokeStyle = 'rgb(0,30,40)';
+    // c.beginPath();
+    // c.arc(x, y, 60, 0, 360, false);
+    // c.stroke();
 
-        c.fillStyle = 'rgb(0,30,40)';
-        c.beginPath();
-        c.arc(x, y, 30, 0, 360, false);
-        c.fill();
-        CircleArray.push({ x, y });
-    }
+    c.fillStyle = 'rgb(266,129,200)';
+    c.beginPath();
+    c.arc(x, y, 30, 0, 360, false);
+    c.fill();
+    CircleArray.push({ x, y });
+
 }
 
 // CONNECTS TWO NODES
@@ -75,7 +78,10 @@ let createLine = (x, y) => {
         c.beginPath();
         c.moveTo(linePoints[0].x, linePoints[0].y);
         c.lineTo(linePoints[1].x, linePoints[1].y);
+        c.lineWidth = 5;
         c.stroke();
+        createNode(linePoints[0].x, linePoints[0].y);
+        createNode(linePoints[1].x, linePoints[1].y);
         linePoints = [];
     }
 
