@@ -13,6 +13,8 @@ class Draw {
         this.circleArray = [];
         // stores coords of two nodes/circles which will be connected through a line...
         this.linePoints = [];
+        // distances
+        this.distance = [];
     }
 
     // create a node/dot
@@ -33,22 +35,53 @@ class Draw {
         this.linePoints.push({ x: drawPoint.x, y: drawPoint.y });
 
         if (this.linePoints.length === 2) {
+            let x1 = this.linePoints[0].x;
+            let y1 = this.linePoints[0].y;
+            let x2 = this.linePoints[1].x;
+            let y2 = this.linePoints[1].y;
             c.beginPath();
-            c.moveTo(this.linePoints[0].x, this.linePoints[0].y);
-            c.lineTo(this.linePoints[1].x, this.linePoints[1].y);
+            c.moveTo(x1, y1);
+            c.lineTo(x2, y2);
             c.lineWidth = 5;
             c.stroke();
+            let dist = Math.round(Math.sqrt(((x2 - x1) ** 2 + (y2 - y1) ** 2) / 10));
+            const obj = {
+                    x: {
+                        x1,
+                        x2
+                    },
+                    y: {
+                        y1,
+                        y2
+                    },
+                    dist: dist
+                }
+                // this.distance.forEach(dist => {
+                //     if (JSON.stringify(dist) === JSON.stringify(obj)) {
+                //         console.log('yessss');
+
+            //         this.distance.push({ obj });
+            //     }
+            // });
+
+            this.distance.push(obj);
+            console.log(this.distance);
 
             // when line is drawn it overlaps the nodes
             // the below commands draw two circles on top of it. So, it
             // hides the lines...
-            this.createNode(this.linePoints[0].x, this.linePoints[0].y);
-            this.createNode(this.linePoints[1].x, this.linePoints[1].y);
+            this.createNode(x1, y1);
+            this.createNode(x2, y2);
 
             // empty the array of points
             this.linePoints = [];
         }
 
+    }
+
+    // erase the canvas
+    eraseCanvas() {
+        c.clearRect(0, 0, innerWidth, innerHeight);
     }
 
     // Returns whether the selected point lies inside the node/dot or not 
@@ -114,6 +147,7 @@ create.addEventListener('click', () => {
 erase.addEventListener('click', () => {
     draw.drawNode = false;
     draw.drawLine = false;
+    draw.eraseCanvas();
 });
 
 line.addEventListener('click', () => {
