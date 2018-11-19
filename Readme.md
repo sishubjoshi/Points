@@ -1,0 +1,6 @@
+# Points
+
+## Kruskal's Algorithm using HTML Canvas
+
+> Algorithm is in Python and App uses a POST request to the Flask api......
+> Full Explanation coming soon...

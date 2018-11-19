@@ -19,9 +19,9 @@ class Draw {
 
     // create a node/dot
     createNode(x, y) {
-        c.fillStyle = 'rgb(266,129,200)';
+        c.fillStyle = 'rgb(0,0,0,1)';
         c.beginPath();
-        c.arc(x, y, 30, 0, 360, false);
+        c.arc(x, y, 15, 0, 360, false);
         c.fill();
         this.circleArray.push({ x, y });
     }
