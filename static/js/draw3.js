@@ -92,8 +92,8 @@ class Draw {
 
 
     callToApi() {
-        // log
-        fetch('http://127.0.0.1:5000/get', {
+        
+        fetch('https://points-server.herokuapp.com/mst', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

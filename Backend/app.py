@@ -1,9 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from kruskal import Graph
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/get', methods = ['POST'])
+
+
+@app.route('/mst', methods = ['POST'])
 def getres():
     data = request.get_json()
     print(data, data[0], data[0]['x'], len(data))
@@ -17,5 +22,10 @@ def getres():
 
 
 
+@app.route('/'):
+def index():
+    return render_template('index.html')
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
