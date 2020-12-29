@@ -22,6 +22,7 @@ class Draw {
         this.circleArray = [];
         this.mstInputs = [];
         this.mstInputValues = [];
+        this.mst=[];
         c.clearRect(0, 0, innerWidth, innerHeight);
     }
 
